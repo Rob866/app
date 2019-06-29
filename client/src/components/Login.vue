@@ -2,7 +2,7 @@
     <v-layout column  align-center  class="elevation-2 mt-4">
       <v-flex class="data-title">
         <v-toolbar  color="teal lighten-2">
-          <v-toolbar-title class="white--text">REGISTRO</v-toolbar-title>
+          <v-toolbar-title class="white--text">Login</v-toolbar-title>
         </v-toolbar>
       </v-flex>
       <v-flex class="data-info pl-4 pr-4 pt-4 pb-4">
@@ -16,7 +16,7 @@
             v-model="password">
           </v-text-field>
           <div class="error" v-html='error'></div>
-          <v-btn color="teal lighten-2" class="white--text" @click="register">REGISTRARSE</v-btn>
+          <v-btn color="teal lighten-2" class="white--text" @click="login">LOGARSE</v-btn>
       </v-flex>
     </v-layout>
 
@@ -35,7 +35,7 @@ export default {
     }
   },
   methods: {
-    async register () {
+    async login () {
       try {
         await AutentificacionService.login({
           email: this.email,

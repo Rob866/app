@@ -1,12 +1,22 @@
 <template>
   <div id="app">
-    <router-view/>
+    <v-app>
+      <HeaderPage/>
+      <v-container>
+        <router-view/>
+      </v-container>
+    </v-app>
   </div>
 </template>
 
 <script>
+
+import HeaderPage from '@/components/Header'
 export default {
-  name: 'App'
+  name: 'App',
+  components: {
+    HeaderPage
+  }
 }
 </script>
 

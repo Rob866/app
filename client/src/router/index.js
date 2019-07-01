@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import About from '@/components/About'
+import Home from '@/components/Home'
 import Register from '@/components/Register'
 import Login from '@/components/Login'
 
@@ -10,8 +10,12 @@ export default new Router({
   routes: [
     {
       path: '/',
-      name: 'root',
-      component: About
+      redirect: { name: 'home' }
+    },
+    {
+      path: '/home',
+      name: 'home',
+      component: Home
     },
     {
       path: '/register',

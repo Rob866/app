@@ -6,6 +6,7 @@
         </v-toolbar>
       </v-flex>
       <v-flex class="data-info pl-4 pr-4 pt-4 pb-4">
+        <form @submit.prevent="register">
           <v-text-field
             v-model="email"
             label="Email">
@@ -16,7 +17,8 @@
             v-model="password">
           </v-text-field>
           <div class="error" v-html='error'></div>
-          <v-btn color="teal lighten-2" class="white--text" @click="register">REGISTRARSE</v-btn>
+          <v-btn type="submit" color="teal lighten-2" class="white--text">REGISTRARSE</v-btn>
+        </form>
       </v-flex>
     </v-layout>
 
@@ -25,7 +27,7 @@
 <script>
 import AutentificacionService from '@/services/AutentificacionService'
 export default {
-  name: 'Register',
+  name: 'register',
   data () {
     return {
       email: '',
@@ -37,10 +39,12 @@ export default {
   methods: {
     async register () {
       try {
-        await AutentificacionService.login({
+        const response = await AutentificacionService.register({
           email: this.email,
           password: this.password
         })
+        this.$store.dispatch('setToken', response.data.token)
+        this.$store.dispatch('setUser', response.data.user)
       } catch (error) {
         this.error = error.response.data.error
       }
@@ -53,6 +57,8 @@ export default {
 <style scoped>
 .error{
   color: red;
+  border-radius: 5px;
+  color: azure;
 }
 
 .data-info,.data-title{

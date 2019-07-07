@@ -2,6 +2,12 @@ const Joi = require('joi')
 
 module.exports = {
   register (req, res, next) {
+    const { email, password } = req.body
+    if (!email || !password) {
+      res.status(400).send({
+        error: 'Información incorrecta'
+      })
+    }
     const esquema = {
       email: Joi.string().email(),
       password: Joi.string().regex(

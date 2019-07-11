@@ -7,7 +7,11 @@
             <v-flex xs6>
               {{ song.titulo }}<br>
               {{ song.album }}<br>
-              {{ song.genero}}
+              {{ song.genero}}<br>
+              <v-btn
+              color="teal lighten-2"
+              @click="toNavigate" class="white--text">editar
+              </v-btn>
             </v-flex>
             <v-flex xs6>
                 <img :src="song.albumImagenUrl"  width=100% alt="" srcset="">
@@ -63,6 +67,12 @@ export default {
     return {
       song: {}
     }
+  },
+  methods: {
+    toNavigate () {
+      this.$router.push({name: 'edit', params: {songId: this.song.id}})
+    }
+
   },
   async mounted () {
     const songId = this.$store.state.route.params.songId

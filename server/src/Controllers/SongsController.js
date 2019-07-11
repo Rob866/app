@@ -1,11 +1,28 @@
 const { Song } = require('../models')
+const { Op } = require('sequelize')
 
 module.exports = {
   async index (req, res) {
     try {
-      const songs = await Song.findAll({
-        limit: 10
-      })
+      let songs = null
+      const search = req.query.search
+      if (search) {
+        songs = await Song.findAll({
+          where: {
+            [Op.or]: [
+              'titulo', 'artista', 'genero', 'album'
+            ].map(key => ({
+              [key]: {
+                [Op.like]: `%${search}%`
+              }
+            }))
+          }
+        })
+      } else {
+        songs = await Song.findAll({
+          limit: 10
+        })
+      }
       res.send(songs)
     } catch (err) {
       res.status(500).send({
@@ -20,6 +37,20 @@ module.exports = {
     } catch (err) {
       res.status(500).send({
         error: 'acceso a cancion fallida'
+      })
+    }
+  },
+  async put (req, res) {
+    try {
+      await Song.update(req.body, {
+        where: {
+          id: req.params.songId
+        }
+      })
+      res.send(req.body)
+    } catch (err) {
+      res.status(500).send({
+        error: 'intento de edicion fallida'
       })
     }
   },

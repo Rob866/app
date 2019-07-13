@@ -1,43 +1,50 @@
 <template>
   <div>
-      <SearchSongs />
-    <Panel title='Canciones'>
-      <div slot="action">
-        <v-btn
-          @click="navigateTo({name: 'creatSong'})"
-          class="cyan accent-2"
-          light
-          medium
-          absolute
-          right
-          middle
-          fab>
-          <v-icon>add</v-icon>
-        </v-btn>
-      </div>
-      <div v-for="song in songs" :key="song.id">
-        <v-layout elevation-2 mb-4>
-          <v-flex xs6>
-            <div class="song song-titulo">
-            {{ song.titulo }}
-            </div>
-            <div class=" song song-artista">
-            {{ song.artista }}
-            </div>
-            <div class="song song-album">
-            {{ song.album }}
-            </div>
-          <v-btn  @click="navigateTo({name: 'song', params: { songId: song.id}})"
-            color="teal lighten-2"
-            class="white--text" >Detalles</v-btn>
+    <v-layout>
+      <v-flex xs5>
+        <BookmarksSongs/>
+      </v-flex>
+      <v-flex xs7 class="ml-2">
+         <SearchSongs/>
+        <Panel title='Canciones'>
+          <div slot="action">
+            <v-btn
+              @click="navigateTo({name: 'creatSong'})"
+              class="cyan accent-2"
+              light
+              medium
+              absolute
+              right
+              middle
+              fab>
+              <v-icon>add</v-icon>
+            </v-btn>
+          </div>
+          <div v-for="song in songs" :key="song.id">
+            <v-layout elevation-2 mb-4>
+              <v-flex xs6>
+                <div class="song song-titulo">
+                {{ song.titulo }}
+                </div>
+                <div class=" song song-artista">
+                {{ song.artista }}
+                </div>
+                <div class="song song-album">
+                {{ song.album }}
+                </div>
+              <v-btn  @click="navigateTo({name: 'song', params: { songId: song.id}})"
+                color="teal lighten-2"
+                class="white--text" >Detalles</v-btn>
 
-          </v-flex>
-          <v-flex xs6>
-            <img :src="song.albumImagenUrl"  width=50% alt="" srcset="">
-          </v-flex>
-        </v-layout>
-      </div>
-    </Panel>
+              </v-flex>
+              <v-flex xs6>
+                <img :src="song.albumImagenUrl"  width=50% alt="" srcset="">
+              </v-flex>
+            </v-layout>
+          </div>
+        </Panel>
+      </v-flex>
+    </v-layout>
   </div>
 </template>
 
@@ -45,6 +52,7 @@
 import songsService from '@/services/SongsService'
 import Panel from '@/components/Panel'
 import SearchSongs from '@/components/Songs/SearchSongs'
+import BookmarksSongs from '@/components/Songs/BookmarksSongs'
 export default {
   name: 'songs',
   data () {
@@ -67,7 +75,8 @@ export default {
   },
   components: {
     Panel,
-    SearchSongs
+    SearchSongs,
+    BookmarksSongs
   }
 }
 </script>

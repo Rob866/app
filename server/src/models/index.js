@@ -20,7 +20,11 @@ fs
     const model = sequelize.import(path.join(__dirname, file))
     db[model.name] = model
   })
-console.log(db['User'])
+Object.keys(db).forEach((modelName) => {
+  if ('associate' in db[modelName]) {
+    db[modelName].associate(db)
+  }
+})
 db.sequelize = sequelize
 db.Sequelize = Sequelize
 module.exports = db

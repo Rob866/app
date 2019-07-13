@@ -2,7 +2,7 @@
   <div id="app">
     <v-app>
       <HeaderPage/>
-      <v-container>
+      <v-container style="padding-right:0; padding-left:0">
         <router-view/>
       </v-container>
     </v-app>

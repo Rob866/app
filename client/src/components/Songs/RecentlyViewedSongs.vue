@@ -1,31 +1,27 @@
-
 <template>
-  <Panel title="Favoritos">
+  <Panel title="Vistas recientes">
     <v-data-table
       :headers ="headers"
       :pagination.sync="pagination"
-      :items="bookmarks">
+      :items="songs">
       <template slot="items" slot-scope="props">
-        <td class="text-xs-left">
+        <tr @click="navigateTo({name: 'song', params: { songId: props.item.Song.id}})">
+          <td class="text-xs-left">
           {{ props.item.Song.titulo }}
-        </td>
-        <td class="text-xs-left">
+          </td>
+          <td class="text-xs-left">
           {{ props.item.Song.artista }}
         </td>
-        <td>
-          <v-btn
-          color="teal lighten-2"
-          @click="navigateTo({name: 'song', params: { songId: props.item.Song.id}})">Ver
-          </v-btn>
-        </td>
+        </tr>
       </template>
     </v-data-table>
   </Panel>
 </template>
 <script>
 import Panel from '@/components/Panel'
-import bookmarksService from '@/services/BookmarksService'
+import historySongsService from '@/services/historySongsService'
 import { mapState } from 'vuex'
+
 export default {
   data () {
     return {
@@ -43,7 +39,7 @@ export default {
         sortBy: 'createdAt',
         descending: true
       },
-      bookmarks: []
+      songs: []
     }
   },
   computed: {
@@ -58,11 +54,11 @@ export default {
     }
   },
   async mounted () {
-    if (!this.isUserLogin) {
+    if (!this.user) {
       return
     }
     try {
-      this.bookmarks = (await bookmarksService.index({
+      this.songs = (await historySongsService.index({
         userId: this.user.id
       })).data
     } catch (err) {

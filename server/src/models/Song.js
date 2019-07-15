@@ -10,6 +10,9 @@ module.exports = (sequelize, DataTypes) => {
     letra: DataTypes.TEXT,
     tab: DataTypes.TEXT
   })
-
+  Song.associate = function (models) {
+    Song.hasMany(models.Bookmark, { onDelete: 'CASCADE', hooks: true })
+    Song.hasMany(models.History, { onDelete: 'CASCADE', hooks: true })
+  }
   return Song
 }

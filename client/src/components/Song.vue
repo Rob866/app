@@ -9,8 +9,14 @@
               {{ song.album }}<br>
               {{ song.genero}}<br>
               <v-btn
+              v-if="isUserLogin"
               color="teal lighten-2"
-              @click="toNavigate" class="white--text">editar
+                @click="toNavigate('edit')" class="white--text">editar
+              </v-btn>
+              <v-btn
+              v-if="isUserLogin"
+              color="red lighten-2"
+              @click="dialogDelete" class="white--text">ELiminar
               </v-btn>
               <v-btn
               v-if="isUserLogin && !bookmark"
@@ -24,7 +30,7 @@
               </v-btn>
             </v-flex>
             <v-flex xs6>
-                <img :src="song.albumImagenUrl"  width=100% alt="" srcset="">
+                <img :src="song.albumImagenUrl" width=100% alt="" srcset="">
                 Send My Love (To Your New Lover)
             </v-flex>
           </v-layout>
@@ -67,23 +73,65 @@
           </v-layout>
       </v-flex>
     </v-layout>
+    <div class="text-xs-center">
+    <v-dialog
+      v-model="dialog"
+      width="500"
+    >
+      <v-card>
+        <v-card-title
+          class="headline grey lighten-2"
+          primary-title
+        >
+          Advertencia
+        </v-card-title>
+
+        <v-card-text>
+          Realmente quiere eliminar la canción?
+        </v-card-text>
+
+        <v-divider></v-divider>
+
+        <v-card-actions>
+          <v-spacer></v-spacer>
+          <v-btn
+            color="primary"
+            flat
+            @click="dialog = false"
+          >
+            Cancelar
+          </v-btn>
+          <v-btn
+            color="primary"
+            flat
+            @click="deleteSong"
+          >
+            Eliminar
+          </v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
   </div>
+</div>
 </template>
 <script>
 import songsService from '@/services/SongsService'
 import bookmarksService from '@/services/BookmarksService'
 import Panel from '@/components/Panel'
 import { mapState } from 'vuex'
+import historySongsService from '@/services/historySongsService'
 export default {
   data () {
     return {
+      dialog: false,
       song: {},
       bookmark: null
     }
   },
   computed: {
     ...mapState([
-      'isUserLogin'
+      'isUserLogin',
+      'user'
     ])
   },
   watch: {
@@ -102,8 +150,22 @@ export default {
     }
   },
   methods: {
-    toNavigate () {
-      this.$router.push({name: 'edit', params: {songId: this.song.id}})
+    toNavigate (route) {
+      this.$router.push({name: `${route}`, params: {songId: this.song.id}})
+    },
+    dialogDelete () {
+      this.dialog = true
+    },
+    async deleteSong () {
+      try {
+        const songId = this.song.id
+        // await historySongsService.delete(songId)
+        // await bookmarksService.deleteAll(songId)
+        await songsService.delete(songId)
+        this.$router.push({name: 'songs'})
+      } catch (err) {
+        console.log(err)
+      }
     },
     async setAsBookmark () {
       try {
@@ -130,6 +192,12 @@ export default {
     const songId = this.$store.state.route.params.songId
     try {
       this.song = (await songsService.show(songId)).data
+      if (this.isUserLogin) {
+        await historySongsService.post({
+          userId: this.user.id,
+          songId: songId
+        })
+      }
     } catch (err) {
       console.log(err)
     }

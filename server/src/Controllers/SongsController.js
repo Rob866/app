@@ -63,5 +63,26 @@ module.exports = {
         error: 'creacion de cancion fallida'
       })
     }
+  },
+  async delete (req, res) {
+    try {
+      const songId = req.params.songId
+      const song = await Song.findOne({
+        where: {
+          id: songId
+        }
+      })
+      if (!song) {
+        return res.status(403).send({
+          error: 'Probleme al encontrar la cancion'
+        })
+      }
+      await song.destroy()
+      res.send(song)
+    } catch (err) {
+      res.status(500).send({
+        error: 'creacion de cancion fallida'
+      })
+    }
   }
 }

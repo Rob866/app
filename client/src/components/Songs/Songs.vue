@@ -1,14 +1,12 @@
 <template>
   <div>
     <v-layout>
-      <v-flex xs5>
-        <BookmarksSongs/>
-      </v-flex>
-      <v-flex xs7 class="ml-2">
+      <v-flex class="xs12">
          <SearchSongs/>
         <Panel title='Canciones'>
           <div slot="action">
             <v-btn
+              v-if="isUserLogin"
               @click="navigateTo({name: 'creatSong'})"
               class="cyan accent-2"
               light
@@ -52,7 +50,8 @@
 import songsService from '@/services/SongsService'
 import Panel from '@/components/Panel'
 import SearchSongs from '@/components/Songs/SearchSongs'
-import BookmarksSongs from '@/components/Songs/BookmarksSongs'
+
+import { mapState } from 'vuex'
 export default {
   name: 'songs',
   data () {
@@ -65,6 +64,11 @@ export default {
       this.$router.push(route)
     }
   },
+  computed: {
+    ...mapState([
+      'isUserLogin'
+    ])
+  },
   watch: {
     '$route.query.search': {
       immediate: true,
@@ -75,8 +79,7 @@ export default {
   },
   components: {
     Panel,
-    SearchSongs,
-    BookmarksSongs
+    SearchSongs
   }
 }
 </script>

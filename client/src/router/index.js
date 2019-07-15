@@ -4,6 +4,7 @@ import Home from '@/components/Home'
 import Register from '@/components/Register'
 import Login from '@/components/Login'
 import Songs from '@/components/Songs/Songs'
+import Content from '@/components/Songs/Content'
 import CreateSong from '@/components/CreateSong'
 import Song from '@/components/Song'
 import EditSong from '@/components/EditSong'
@@ -20,6 +21,11 @@ export default new Router({
       path: '/home',
       name: 'home',
       component: Home
+    },
+    {
+      path: '/content',
+      name: 'content',
+      component: Content
     },
     {
       path: '/register',

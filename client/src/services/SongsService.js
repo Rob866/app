@@ -16,5 +16,8 @@ export default {
   },
   post (song) {
     return Api().post('songs', song)
+  },
+  delete (songId) {
+    return Api().delete(`songs/${songId}`)
   }
 }

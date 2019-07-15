@@ -20,6 +20,13 @@
   <v-spacer></v-spacer>
   <v-toolbar-items>
     <v-btn
+      v-if="$store.state.isUserLogin"
+      flat dark
+      @click="toNavigate('content')"
+      class="white--text">
+      Content
+    </v-btn>
+    <v-btn
       v-if="!$store.state.isUserLogin"
       flat dark
       @click="toNavigate('login')"

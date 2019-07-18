@@ -1,85 +1,12 @@
 <template>
   <div class="hello">
-    <h1>{{ msg }}</h1>
-    <h2>Links Esenciales</h2>
-    <ul>
-      <li>
-        <a
-          href="https://vuejs.org"
-          target="_blank"
-        >
-          Core Docs
-        </a>
-      </li>
-      <li>
-        <a
-          href="https://forum.vuejs.org"
-          target="_blank"
-        >
-          Forum
-        </a>
-      </li>
-      <li>
-        <a
-          href="https://chat.vuejs.org"
-          target="_blank"
-        >
-          Community Chat
-        </a>
-      </li>
-      <li>
-        <a
-          href="https://twitter.com/vuejs"
-          target="_blank"
-        >
-          Twitter
-        </a>
-      </li>
-      <br>
-      <li>
-        <a
-          href="http://vuejs-templates.github.io/webpack/"
-          target="_blank"
-        >
-          Docs for This Template
-        </a>
-      </li>
-    </ul>
-    <h2>Ecosistema</h2>
-    <ul>
-      <li>
-        <a
-          href="http://router.vuejs.org/"
-          target="_blank"
-        >
-          vue-router
-        </a>
-      </li>
-      <li>
-        <a
-          href="http://vuex.vuejs.org/"
-          target="_blank"
-        >
-          vuex
-        </a>
-      </li>
-      <li>
-        <a
-          href="http://vue-loader.vuejs.org/"
-          target="_blank"
-        >
-          vue-loader
-        </a>
-      </li>
-      <li>
-        <a
-          href="https://github.com/vuejs/awesome-vue"
-          target="_blank"
-        >
-          awesome-vue
-        </a>
-      </li>
-    </ul>
+     <v-carousel>
+      <v-carousel-item
+      v-for="(item,i) in items"
+      :key="i"
+      :src="item.src"
+      ></v-carousel-item>
+    </v-carousel>
   </div>
 </template>
 
@@ -88,7 +15,20 @@ export default {
   name: 'home',
   data () {
     return {
-      msg: 'Bienvenido a mi Vue.js App'
+      items: [
+        {
+          src: 'https://www.thedj.co.uk/wp-content/uploads/2014/07/music-colour-splash.jpg'
+        },
+        {
+          src: 'http://melodrive.com/blog/wp-content/uploads/2017/02/score.jpg'
+        },
+        {
+          src: 'https://www.earmaster.com/images/ekstern/understanding_music_theory_19.jpg'
+        },
+        {
+          src: 'https://images.pexels.com/photos/6966/abstract-music-rock-bw.jpg?h=1000&w=1500&fit=crop&mark=https%3A%2F%2Fassets.imgix.net%2F~text%3Ftxtclr%3Dfff%26txt%3DFree+Music+Photos%26txtsize%3D120%26txtpad%3D20%26bg%3D80000000%26txtfont%3DAvenir-Heavy%26txtalign%3Dcenter%26w%3D1300&markalign=center%2Cmiddle&txt=pexels.com&txtalign=center&txtsize=60&txtclr=eeffffff&txtfont=Avenir-Heavy&txtshad=10'
+        }
+      ]
     }
   }
 }

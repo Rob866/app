@@ -70,6 +70,7 @@
 <script>
 import SongsService from '@/services/SongsService'
 import Panel from '@/components/Panel'
+import { mapState } from 'vuex'
 export default {
   name: 'createSong',
   data () {
@@ -82,11 +83,17 @@ export default {
         albumImagenUrl: null,
         youtubeId: null,
         letra: null,
-        tab: null
+        tab: null,
+        UserId: null
       },
       required: (value) => !!value || 'requerido.',
       err: null
     }
+  },
+  computed: {
+    ...mapState([
+      'user'
+    ])
   },
   methods: {
     async guardar () {
@@ -106,8 +113,8 @@ export default {
   },
   async mounted () {
     const songId = this.$store.state.route.params.songId
-    const song = await SongsService.show(songId)
-    this.song = song.data
+    this.song = (await SongsService.show(songId)).data
+    console.log(this.song)
   },
   components: {
     Panel

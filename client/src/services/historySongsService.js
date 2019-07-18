@@ -11,7 +11,7 @@ export default {
   post (history) {
     return Api().post('history', history)
   },
-  delete (songId) {
-    return Api().delete(`history/${songId}`)
+  delete (userId) {
+    return Api().delete(`history/${userId}`)
   }
 }

@@ -1,0 +1,109 @@
+===============================================================================
+EXTENSION NAME : linecounter
+EXTENSION VERSION : 0.2.2
+-------------------------------------------------------------------------------
+count time : 2019-07-16 21:29:28
+count workspace : /home/rob/Documents/app
+total files : 87
+total code lines : 23414
+total comment lines : 140
+total blank lines : 219
+
+    statistics
+   |      extension|     total code|  total comment|    total blank|percent|
+   -------------------------------------------------------------------------
+   |               |             72|              3|              7|   0.31|
+   |            .md|             20|              1|             10|  0.085|
+   |            .js|           1541|            133|            155|    6.6|
+   |          .html|             14|              1|              0|  0.060|
+   |          .json|          20545|              0|              2|     88|
+   |           .vue|           1222|              2|             45|    5.2|
+   -------------------------------------------------------------------------
+.gitignore, code is 2, comment is 0, blank is 0.
+client/.babelrc, code is 17, comment is 0, blank is 1.
+client/.editorconfig, code is 8, comment is 0, blank is 1.
+client/.eslintignore, code is 3, comment is 3, blank is 0.
+client/.eslintrc.js, code is 18, comment is 8, blank is 3.
+client/.gitignore, code is 16, comment is 0, blank is 1.
+client/.postcssrc.js, code is 7, comment is 2, blank is 1.
+client/build/build.js, code is 33, comment is 1, blank is 8.
+client/build/check-versions.js, code is 44, comment is 0, blank is 10.
+client/build/logo.png, it is a binary file.
+client/build/utils.js, code is 79, comment is 5, blank is 17.
+client/build/vue-loader.conf.js, code is 20, comment is 0, blank is 2.
+client/build/webpack.base.conf.js, code is 84, comment is 4, blank is 4.
+client/build/webpack.dev.conf.js, code is 81, comment is 11, blank is 7.
+client/build/webpack.prod.conf.js, code is 116, comment is 24, blank is 9.
+client/build/webpack.test.conf.js, code is 22, comment is 5, blank is 5.
+client/config/dev.env.js, code is 5, comment is 0, blank is 2.
+client/config/index.js, code is 30, comment is 33, blank is 16.
+client/config/prod.env.js, code is 3, comment is 0, blank is 1.
+client/config/test.env.js, code is 5, comment is 0, blank is 2.
+client/index.html, code is 14, comment is 1, blank is 0.
+client/package-lock.json, code is 15616, comment is 0, blank is 0.
+client/package.json, code is 104, comment is 0, blank is 1.
+client/README.md, code is 20, comment is 1, blank is 10.
+client/src/App.vue, code is 29, comment is 0, blank is 4.
+client/src/assets/logo.png, it is a binary file.
+client/src/components/CreateSong.vue, code is 113, comment is 0, blank is 3.
+client/src/components/EditSong.vue, code is 124, comment is 0, blank is 4.
+client/src/components/Header.vue, code is 68, comment is 0, blank is 6.
+client/src/components/Home.vue, code is 111, comment is 0, blank is 2.
+client/src/components/Login.vue, code is 64, comment is 0, blank is 3.
+client/src/components/Panel.vue, code is 25, comment is 0, blank is 0.
+client/src/components/Register.vue, code is 61, comment is 0, blank is 2.
+client/src/components/Song.vue, code is 213, comment is 2, blank is 4.
+client/src/components/Songs/BookmarksSongs.vue, code is 100, comment is 0, blank is 2.
+client/src/components/Songs/Content.vue, code is 23, comment is 0, blank is 2.
+client/src/components/Songs/Ownsongs.vue, code is 76, comment is 0, blank is 1.
+client/src/components/Songs/RecentlyViewedSongs.vue, code is 94, comment is 0, blank is 3.
+client/src/components/Songs/SearchSongs.vue, code is 42, comment is 0, blank is 3.
+client/src/components/Songs/Songs.vue, code is 79, comment is 0, blank is 6.
+client/src/main.js, code is 19, comment is 3, blank is 3.
+client/src/router/index.js, code is 58, comment is 0, blank is 3.
+client/src/services/Api.js, code is 10, comment is 1, blank is 1.
+client/src/services/AutentificacionService.js, code is 9, comment is 0, blank is 1.
+client/src/services/BookmarksService.js, code is 31, comment is 0, blank is 1.
+client/src/services/historySongsService.js, code is 16, comment is 0, blank is 1.
+client/src/services/SongsService.js, code is 22, comment is 0, blank is 1.
+client/src/services/UserService.js, code is 7, comment is 0, blank is 1.
+client/src/store/store.js, code is 34, comment is 0, blank is 1.
+client/static/.gitkeep, code is 0, comment is 0, blank is 0.
+client/static/img/person.jpg, it is a binary file.
+client/test/e2e/custom-assertions/elementCount.js, code is 18, comment is 8, blank is 1.
+client/test/e2e/nightwatch.conf.js, code is 40, comment is 1, blank is 5.
+client/test/e2e/runner.js, code is 33, comment is 8, blank is 7.
+client/test/e2e/specs/test.js, code is 12, comment is 5, blank is 2.
+client/test/unit/.eslintrc, code is 9, comment is 0, blank is 0.
+client/test/unit/index.js, code is 6, comment is 4, blank is 3.
+client/test/unit/karma.conf.js, code is 23, comment is 8, blank is 2.
+client/test/unit/specs/HelloWorld.spec.js, code is 10, comment is 0, blank is 1.
+LICENSE, code is 17, comment is 0, blank is 4.
+package-lock.json, code is 3, comment is 0, blank is 0.
+README.md, code is 0, comment is 0, blank is 0.
+server/.eslintrc.js, code is 18, comment is 0, blank is 1.
+server/package-lock.json, code is 4745, comment is 0, blank is 0.
+server/package.json, code is 37, comment is 0, blank is 0.
+server/seed/bookmarks.json, code is 4, comment is 0, blank is 0.
+server/seed/history.json, code is 10, comment is 0, blank is 0.
+server/seed/index.js, code is 35, comment is 0, blank is 2.
+server/seed/songs.json, code is 22, comment is 0, blank is 1.
+server/seed/users.json, code is 4, comment is 0, blank is 0.
+server/src/app.js, code is 17, comment is 0, blank is 6.
+server/src/config/config.js, code is 17, comment is 0, blank is 1.
+server/src/Controllers/AutentificacionController.js, code is 55, comment is 0, blank is 4.
+server/src/Controllers/BookmarksController.js, code is 108, comment is 1, blank is 1.
+server/src/Controllers/HistoryController.js, code is 53, comment is 0, blank is 1.
+server/src/Controllers/SongsController.js, code is 94, comment is 0, blank is 1.
+server/src/Controllers/SongsUserController.js, code is 18, comment is 0, blank is 1.
+server/src/models/Bookmark.js, code is 8, comment is 0, blank is 0.
+server/src/models/History.js, code is 8, comment is 0, blank is 0.
+server/src/models/index.js, code is 28, comment is 0, blank is 2.
+server/src/models/Song.js, code is 18, comment is 0, blank is 2.
+server/src/models/User.js, code is 34, comment is 0, blank is 3.
+server/src/passport.js, code is 27, comment is 0, blank is 2.
+server/src/policies/autentificacionControllerPolicy.js, code is 44, comment is 1, blank is 1.
+server/src/policies/estaAutentificado.js, code is 13, comment is 0, blank is 1.
+server/src/routes.js, code is 51, comment is 0, blank is 5.
+server/tracker.sqlite, it is a binary file.
+===============================================================================

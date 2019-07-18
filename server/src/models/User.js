@@ -26,6 +26,9 @@ module.exports = (sequelize, DataTypes) => {
       beforeSave: hashPassword
     }
   })
+  User.associate = function (models) {
+    User.hasMany(models.Song, { onDelete: 'CASCADE', hooks: true })
+  }
 
   User.prototype.comparePassword = function (password) {
     return bcrypt.compareSync(password, this.password)

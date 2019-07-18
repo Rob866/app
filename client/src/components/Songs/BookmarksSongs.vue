@@ -1,6 +1,15 @@
-
 <template>
+  <div style="position: relative">
   <Panel title="Favoritos">
+    <v-btn
+      v-if="isUserLogin"
+      color="red lighten-2"
+      medium
+      absolute
+      right
+      @click="deleteBookmarks" class="white--text">
+      BORRAR FAVORITOS
+    </v-btn>
     <v-data-table
       :headers ="headers"
       :pagination.sync="pagination"
@@ -14,17 +23,20 @@
         </td>
         <td>
           <v-btn
+          flat
           color="teal lighten-2"
-          @click="navigateTo({name: 'song', params: { songId: props.item.Song.id}})">Ver
+          @click="navigateTo({name: 'song', params: { songId: props.item.Song.id}})">
+          <v-icon>visibility</v-icon>
           </v-btn>
         </td>
       </template>
     </v-data-table>
   </Panel>
+  </div>
 </template>
 <script>
 import Panel from '@/components/Panel'
-import bookmarksService from '@/services/BookmarksService'
+import BookmarksService from '@/services/BookmarksService'
 import { mapState } from 'vuex'
 export default {
   data () {
@@ -55,6 +67,14 @@ export default {
   methods: {
     navigateTo (route) {
       this.$router.push(route)
+    },
+    async deleteBookmarks () {
+      try {
+        await BookmarksService.deleteAll(this.user.id)
+        this.bookmarks = []
+      } catch (err) {
+        console.log(err)
+      }
     }
   },
   async mounted () {
@@ -62,7 +82,7 @@ export default {
       return
     }
     try {
-      this.bookmarks = (await bookmarksService.index({
+      this.bookmarks = (await BookmarksService.index({
         userId: this.user.id
       })).data
     } catch (err) {

@@ -1,12 +1,12 @@
 <template>
-  <v-toolbar  fixed color="teal lighten-2">
+  <v-toolbar  fixed color="teal lighten-2" style="height: 55px">
     <v-toolbar-title class="white--text">
         <v-btn
           flat dark
           @click="toNavigate('home')"
           class="white--text"
           style="font-size: 22px">
-          <h5>SONGS TRACKER</h5>
+          <img src="../assets/song.png"  width="180px" alt="" srcset="">
         </v-btn>
       </v-toolbar-title>
   <v-toolbar-title>
@@ -21,10 +21,11 @@
   <v-toolbar-items>
     <v-btn
       v-if="$store.state.isUserLogin"
-      flat dark
+      flat
+      dark
       @click="toNavigate('content')"
       class="white--text">
-      Content
+     <v-icon>dashboard</v-icon>
     </v-btn>
     <v-btn
       v-if="!$store.state.isUserLogin"
@@ -39,12 +40,28 @@
       class="white--text">
       Registrarse
     </v-btn>
-    <v-btn flat dark
-      v-if="$store.state.isUserLogin"
-      @click="logOut"
-      class="white--text">
-      Log Out
-    </v-btn>
+    <div
+    v-if="$store.state.isUserLogin"
+    class="text-xs-center mt-3">
+    <v-menu offset-y>
+      <template v-slot:activator="{ on }">
+        <v-btn
+          color="white"
+          dark
+          flat
+          class="white--text"
+          v-on="on"
+        >
+          <v-icon style="font-size: 30px">settings</v-icon>
+        </v-btn>
+      </template>
+      <v-list>
+        <v-list-tile>
+        <v-list-tile-title @click="logOut" style="cursor: pointer">Salir</v-list-tile-title>
+        </v-list-tile>
+      </v-list>
+    </v-menu>
+  </div>
   </v-toolbar-items>
 </v-toolbar>
 

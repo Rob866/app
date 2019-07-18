@@ -9,8 +9,10 @@ module.exports = (sequelize, DataTypes) => {
     youtubeId: DataTypes.STRING,
     letra: DataTypes.TEXT,
     tab: DataTypes.TEXT
+
   })
   Song.associate = function (models) {
+    Song.belongsTo(models.User)
     Song.hasMany(models.Bookmark, { onDelete: 'CASCADE', hooks: true })
     Song.hasMany(models.History, { onDelete: 'CASCADE', hooks: true })
   }

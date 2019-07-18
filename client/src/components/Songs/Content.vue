@@ -1,6 +1,7 @@
 <template>
   <v-layout xs12>
     <v-flex>
+      <Ownsongs/>
       <BookmarksSongs/>
       <RecentlyViwedSongs/>
     </v-flex>
@@ -9,11 +10,13 @@
 <script>
 import BookmarksSongs from '@/components/Songs/BookmarksSongs'
 import RecentlyViwedSongs from '@/components/Songs/RecentlyViewedSongs'
+import Ownsongs from '@/components/Songs/Ownsongs'
 export default {
 
   components: {
     BookmarksSongs,
-    RecentlyViwedSongs
+    RecentlyViwedSongs,
+    Ownsongs
   }
 }
 </script>

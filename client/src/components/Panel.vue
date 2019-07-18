@@ -1,8 +1,8 @@
 <template>
   <v-layout row  justify-center align-center  wrap>
       <v-flex xs12  class="data-title elevation-2 mt-4">
-        <v-toolbar  color="teal lighten-2">
-        <v-toolbar-title class="white--text">{{ title }}</v-toolbar-title>
+        <v-toolbar  color="teal lighten-2" style="height: 55px">
+        <v-toolbar-title class="white--text" style="padding-bottom: 10px">{{ title }}</v-toolbar-title>
         <slot name="action"></slot>
         </v-toolbar>
     </v-flex>

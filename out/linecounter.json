@@ -1,0 +1,575 @@
+{
+    "extension": "linecounter",
+    "version": "0.2.2",
+    "workspace": "/home/rob/Documents/app",
+    "linecount": [
+        {
+            "version": "0.2.2",
+            "counttime": "2019-07-16 21:29:28",
+            "filesum": 87,
+            "codesum": 23414,
+            "commentsum": 140,
+            "blanksum": 219,
+            "statistics": {
+                "": {
+                    "code": 72,
+                    "comment": 3,
+                    "blank": 7
+                },
+                ".md": {
+                    "code": 20,
+                    "comment": 1,
+                    "blank": 10
+                },
+                ".js": {
+                    "code": 1541,
+                    "comment": 133,
+                    "blank": 155
+                },
+                ".html": {
+                    "code": 14,
+                    "comment": 1,
+                    "blank": 0
+                },
+                ".json": {
+                    "code": 20545,
+                    "comment": 0,
+                    "blank": 2
+                },
+                ".vue": {
+                    "code": 1222,
+                    "comment": 2,
+                    "blank": 45
+                }
+            },
+            "filelist": [
+                {
+                    "blank": 0,
+                    "code": 2,
+                    "comment": 0,
+                    "filename": ".gitignore"
+                },
+                {
+                    "blank": 1,
+                    "code": 17,
+                    "comment": 0,
+                    "filename": "client/.babelrc"
+                },
+                {
+                    "blank": 1,
+                    "code": 8,
+                    "comment": 0,
+                    "filename": "client/.editorconfig"
+                },
+                {
+                    "blank": 0,
+                    "code": 3,
+                    "comment": 3,
+                    "filename": "client/.eslintignore"
+                },
+                {
+                    "blank": 3,
+                    "code": 18,
+                    "comment": 8,
+                    "filename": "client/.eslintrc.js"
+                },
+                {
+                    "blank": 1,
+                    "code": 16,
+                    "comment": 0,
+                    "filename": "client/.gitignore"
+                },
+                {
+                    "blank": 1,
+                    "code": 7,
+                    "comment": 2,
+                    "filename": "client/.postcssrc.js"
+                },
+                {
+                    "blank": 8,
+                    "code": 33,
+                    "comment": 1,
+                    "filename": "client/build/build.js"
+                },
+                {
+                    "blank": 10,
+                    "code": 44,
+                    "comment": 0,
+                    "filename": "client/build/check-versions.js"
+                },
+                {
+                    "filename": "client/build/logo.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "blank": 17,
+                    "code": 79,
+                    "comment": 5,
+                    "filename": "client/build/utils.js"
+                },
+                {
+                    "blank": 2,
+                    "code": 20,
+                    "comment": 0,
+                    "filename": "client/build/vue-loader.conf.js"
+                },
+                {
+                    "blank": 4,
+                    "code": 84,
+                    "comment": 4,
+                    "filename": "client/build/webpack.base.conf.js"
+                },
+                {
+                    "blank": 7,
+                    "code": 81,
+                    "comment": 11,
+                    "filename": "client/build/webpack.dev.conf.js"
+                },
+                {
+                    "blank": 9,
+                    "code": 116,
+                    "comment": 24,
+                    "filename": "client/build/webpack.prod.conf.js"
+                },
+                {
+                    "blank": 5,
+                    "code": 22,
+                    "comment": 5,
+                    "filename": "client/build/webpack.test.conf.js"
+                },
+                {
+                    "blank": 2,
+                    "code": 5,
+                    "comment": 0,
+                    "filename": "client/config/dev.env.js"
+                },
+                {
+                    "blank": 16,
+                    "code": 30,
+                    "comment": 33,
+                    "filename": "client/config/index.js"
+                },
+                {
+                    "blank": 1,
+                    "code": 3,
+                    "comment": 0,
+                    "filename": "client/config/prod.env.js"
+                },
+                {
+                    "blank": 2,
+                    "code": 5,
+                    "comment": 0,
+                    "filename": "client/config/test.env.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 14,
+                    "comment": 1,
+                    "filename": "client/index.html"
+                },
+                {
+                    "blank": 0,
+                    "code": 15616,
+                    "comment": 0,
+                    "filename": "client/package-lock.json"
+                },
+                {
+                    "blank": 1,
+                    "code": 104,
+                    "comment": 0,
+                    "filename": "client/package.json"
+                },
+                {
+                    "blank": 10,
+                    "code": 20,
+                    "comment": 1,
+                    "filename": "client/README.md"
+                },
+                {
+                    "blank": 4,
+                    "code": 29,
+                    "comment": 0,
+                    "filename": "client/src/App.vue"
+                },
+                {
+                    "filename": "client/src/assets/logo.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "blank": 3,
+                    "code": 113,
+                    "comment": 0,
+                    "filename": "client/src/components/CreateSong.vue"
+                },
+                {
+                    "blank": 4,
+                    "code": 124,
+                    "comment": 0,
+                    "filename": "client/src/components/EditSong.vue"
+                },
+                {
+                    "blank": 6,
+                    "code": 68,
+                    "comment": 0,
+                    "filename": "client/src/components/Header.vue"
+                },
+                {
+                    "blank": 2,
+                    "code": 111,
+                    "comment": 0,
+                    "filename": "client/src/components/Home.vue"
+                },
+                {
+                    "blank": 3,
+                    "code": 64,
+                    "comment": 0,
+                    "filename": "client/src/components/Login.vue"
+                },
+                {
+                    "blank": 0,
+                    "code": 25,
+                    "comment": 0,
+                    "filename": "client/src/components/Panel.vue"
+                },
+                {
+                    "blank": 2,
+                    "code": 61,
+                    "comment": 0,
+                    "filename": "client/src/components/Register.vue"
+                },
+                {
+                    "blank": 4,
+                    "code": 213,
+                    "comment": 2,
+                    "filename": "client/src/components/Song.vue"
+                },
+                {
+                    "blank": 2,
+                    "code": 100,
+                    "comment": 0,
+                    "filename": "client/src/components/Songs/BookmarksSongs.vue"
+                },
+                {
+                    "blank": 2,
+                    "code": 23,
+                    "comment": 0,
+                    "filename": "client/src/components/Songs/Content.vue"
+                },
+                {
+                    "blank": 1,
+                    "code": 76,
+                    "comment": 0,
+                    "filename": "client/src/components/Songs/Ownsongs.vue"
+                },
+                {
+                    "blank": 3,
+                    "code": 94,
+                    "comment": 0,
+                    "filename": "client/src/components/Songs/RecentlyViewedSongs.vue"
+                },
+                {
+                    "blank": 3,
+                    "code": 42,
+                    "comment": 0,
+                    "filename": "client/src/components/Songs/SearchSongs.vue"
+                },
+                {
+                    "blank": 6,
+                    "code": 79,
+                    "comment": 0,
+                    "filename": "client/src/components/Songs/Songs.vue"
+                },
+                {
+                    "blank": 3,
+                    "code": 19,
+                    "comment": 3,
+                    "filename": "client/src/main.js"
+                },
+                {
+                    "blank": 3,
+                    "code": 58,
+                    "comment": 0,
+                    "filename": "client/src/router/index.js"
+                },
+                {
+                    "blank": 1,
+                    "code": 10,
+                    "comment": 1,
+                    "filename": "client/src/services/Api.js"
+                },
+                {
+                    "blank": 1,
+                    "code": 9,
+                    "comment": 0,
+                    "filename": "client/src/services/AutentificacionService.js"
+                },
+                {
+                    "blank": 1,
+                    "code": 31,
+                    "comment": 0,
+                    "filename": "client/src/services/BookmarksService.js"
+                },
+                {
+                    "blank": 1,
+                    "code": 16,
+                    "comment": 0,
+                    "filename": "client/src/services/historySongsService.js"
+                },
+                {
+                    "blank": 1,
+                    "code": 22,
+                    "comment": 0,
+                    "filename": "client/src/services/SongsService.js"
+                },
+                {
+                    "blank": 1,
+                    "code": 7,
+                    "comment": 0,
+                    "filename": "client/src/services/UserService.js"
+                },
+                {
+                    "blank": 1,
+                    "code": 34,
+                    "comment": 0,
+                    "filename": "client/src/store/store.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0,
+                    "filename": "client/static/.gitkeep"
+                },
+                {
+                    "filename": "client/static/img/person.jpg",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "blank": 1,
+                    "code": 18,
+                    "comment": 8,
+                    "filename": "client/test/e2e/custom-assertions/elementCount.js"
+                },
+                {
+                    "blank": 5,
+                    "code": 40,
+                    "comment": 1,
+                    "filename": "client/test/e2e/nightwatch.conf.js"
+                },
+                {
+                    "blank": 7,
+                    "code": 33,
+                    "comment": 8,
+                    "filename": "client/test/e2e/runner.js"
+                },
+                {
+                    "blank": 2,
+                    "code": 12,
+                    "comment": 5,
+                    "filename": "client/test/e2e/specs/test.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 9,
+                    "comment": 0,
+                    "filename": "client/test/unit/.eslintrc"
+                },
+                {
+                    "blank": 3,
+                    "code": 6,
+                    "comment": 4,
+                    "filename": "client/test/unit/index.js"
+                },
+                {
+                    "blank": 2,
+                    "code": 23,
+                    "comment": 8,
+                    "filename": "client/test/unit/karma.conf.js"
+                },
+                {
+                    "blank": 1,
+                    "code": 10,
+                    "comment": 0,
+                    "filename": "client/test/unit/specs/HelloWorld.spec.js"
+                },
+                {
+                    "blank": 4,
+                    "code": 17,
+                    "comment": 0,
+                    "filename": "LICENSE"
+                },
+                {
+                    "blank": 0,
+                    "code": 3,
+                    "comment": 0,
+                    "filename": "package-lock.json"
+                },
+                {
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0,
+                    "filename": "README.md"
+                },
+                {
+                    "blank": 1,
+                    "code": 18,
+                    "comment": 0,
+                    "filename": "server/.eslintrc.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 4745,
+                    "comment": 0,
+                    "filename": "server/package-lock.json"
+                },
+                {
+                    "blank": 0,
+                    "code": 37,
+                    "comment": 0,
+                    "filename": "server/package.json"
+                },
+                {
+                    "blank": 0,
+                    "code": 4,
+                    "comment": 0,
+                    "filename": "server/seed/bookmarks.json"
+                },
+                {
+                    "blank": 0,
+                    "code": 10,
+                    "comment": 0,
+                    "filename": "server/seed/history.json"
+                },
+                {
+                    "blank": 2,
+                    "code": 35,
+                    "comment": 0,
+                    "filename": "server/seed/index.js"
+                },
+                {
+                    "blank": 1,
+                    "code": 22,
+                    "comment": 0,
+                    "filename": "server/seed/songs.json"
+                },
+                {
+                    "blank": 0,
+                    "code": 4,
+                    "comment": 0,
+                    "filename": "server/seed/users.json"
+                },
+                {
+                    "blank": 6,
+                    "code": 17,
+                    "comment": 0,
+                    "filename": "server/src/app.js"
+                },
+                {
+                    "blank": 1,
+                    "code": 17,
+                    "comment": 0,
+                    "filename": "server/src/config/config.js"
+                },
+                {
+                    "blank": 4,
+                    "code": 55,
+                    "comment": 0,
+                    "filename": "server/src/Controllers/AutentificacionController.js"
+                },
+                {
+                    "blank": 1,
+                    "code": 108,
+                    "comment": 1,
+                    "filename": "server/src/Controllers/BookmarksController.js"
+                },
+                {
+                    "blank": 1,
+                    "code": 53,
+                    "comment": 0,
+                    "filename": "server/src/Controllers/HistoryController.js"
+                },
+                {
+                    "blank": 1,
+                    "code": 94,
+                    "comment": 0,
+                    "filename": "server/src/Controllers/SongsController.js"
+                },
+                {
+                    "blank": 1,
+                    "code": 18,
+                    "comment": 0,
+                    "filename": "server/src/Controllers/SongsUserController.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 8,
+                    "comment": 0,
+                    "filename": "server/src/models/Bookmark.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 8,
+                    "comment": 0,
+                    "filename": "server/src/models/History.js"
+                },
+                {
+                    "blank": 2,
+                    "code": 28,
+                    "comment": 0,
+                    "filename": "server/src/models/index.js"
+                },
+                {
+                    "blank": 2,
+                    "code": 18,
+                    "comment": 0,
+                    "filename": "server/src/models/Song.js"
+                },
+                {
+                    "blank": 3,
+                    "code": 34,
+                    "comment": 0,
+                    "filename": "server/src/models/User.js"
+                },
+                {
+                    "blank": 2,
+                    "code": 27,
+                    "comment": 0,
+                    "filename": "server/src/passport.js"
+                },
+                {
+                    "blank": 1,
+                    "code": 44,
+                    "comment": 1,
+                    "filename": "server/src/policies/autentificacionControllerPolicy.js"
+                },
+                {
+                    "blank": 1,
+                    "code": 13,
+                    "comment": 0,
+                    "filename": "server/src/policies/estaAutentificado.js"
+                },
+                {
+                    "blank": 5,
+                    "code": 51,
+                    "comment": 0,
+                    "filename": "server/src/routes.js"
+                },
+                {
+                    "filename": "server/tracker.sqlite",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                }
+            ]
+        }
+    ]
+}

@@ -1,21 +1,32 @@
 <template>
-  <Panel title="Vistas recientes">
-    <v-data-table
-      :headers ="headers"
-      :pagination.sync="pagination"
-      :items="songs">
-      <template slot="items" slot-scope="props">
-        <tr @click="navigateTo({name: 'song', params: { songId: props.item.Song.id}})">
-          <td class="text-xs-left">
-          {{ props.item.Song.titulo }}
+  <div style="position: relative">
+    <Panel title="Vistas recientes">
+      <v-btn
+      v-if="isUserLogin"
+      color="red lighten-2"
+      medium
+      absolute
+      right
+      @click="deleteHistorial" class="white--text">
+      BORRAR Historial
+      </v-btn>
+      <v-data-table
+        :headers ="headers"
+        :pagination.sync="pagination"
+        :items="songs">
+        <template slot="items" slot-scope="props">
+          <tr @click="navigateTo({name: 'song', params: { songId: props.item.Song.id}})">
+            <td class="text-xs-left">
+            {{ props.item.Song.titulo }}
+            </td>
+            <td class="text-xs-left">
+            {{ props.item.Song.artista }}
           </td>
-          <td class="text-xs-left">
-          {{ props.item.Song.artista }}
-        </td>
-        </tr>
-      </template>
-    </v-data-table>
-  </Panel>
+          </tr>
+        </template>
+      </v-data-table>
+    </Panel>
+  </div>
 </template>
 <script>
 import Panel from '@/components/Panel'
@@ -51,6 +62,14 @@ export default {
   methods: {
     navigateTo (route) {
       this.$router.push(route)
+    },
+    async deleteHistorial () {
+      try {
+        await historySongsService.delete(this.user.id)
+        this.songs = []
+      } catch (err) {
+        console.log(err)
+      }
     }
   },
   async mounted () {

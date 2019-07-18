@@ -4,20 +4,6 @@
       <v-flex class="xs12">
          <SearchSongs/>
         <Panel title='Canciones'>
-          <div slot="action">
-            <v-btn
-              v-if="isUserLogin"
-              @click="navigateTo({name: 'creatSong'})"
-              class="cyan accent-2"
-              light
-              medium
-              absolute
-              right
-              middle
-              fab>
-              <v-icon>add</v-icon>
-            </v-btn>
-          </div>
           <div v-for="song in songs" :key="song.id">
             <v-layout elevation-2 mb-4>
               <v-flex xs6>

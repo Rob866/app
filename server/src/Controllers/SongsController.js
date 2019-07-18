@@ -57,6 +57,7 @@ module.exports = {
   async post (req, res) {
     try {
       const song = await Song.create(req.body)
+      song.setUser(req.user.id)
       res.send(song)
     } catch (err) {
       res.status(500).send({
@@ -65,23 +66,29 @@ module.exports = {
     }
   },
   async delete (req, res) {
-    try {
-      const songId = req.params.songId
-      const song = await Song.findOne({
-        where: {
-          id: songId
+    if (req.user) {
+      try {
+        const songId = req.params.songId
+        const song = await Song.findOne({
+          where: {
+            id: songId
+          }
+        })
+        if (!song) {
+          return res.status(403).send({
+            error: 'Probleme al encontrar la cancion'
+          })
         }
-      })
-      if (!song) {
-        return res.status(403).send({
-          error: 'Probleme al encontrar la cancion'
+        await song.destroy()
+        res.send(song)
+      } catch (err) {
+        res.status(500).send({
+          error: 'no  tiene permisos'
         })
       }
-      await song.destroy()
-      res.send(song)
-    } catch (err) {
+    } else {
       res.status(500).send({
-        error: 'creacion de cancion fallida'
+        error: 'no tiene permisos'
       })
     }
   }

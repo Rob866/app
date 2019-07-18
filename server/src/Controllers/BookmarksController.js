@@ -1,5 +1,4 @@
 const { Bookmark, Song } = require('../models')
-
 module.exports = {
   async index (req, res) {
     // req user autentificacion se obtiene del middleware esta Autentificado
@@ -29,6 +28,9 @@ module.exports = {
             {
               model: Song
             }
+          ],
+          order: [
+            ['createdAt', 'DESC']
           ]
         })
         res.send(bookmarks)
@@ -68,13 +70,13 @@ module.exports = {
   async deleteAll (req, res) {
     if (req.user) {
       try {
-        const songId = req.params.songId
+        const userId = req.params.userId
         await Bookmark.destroy({
           where: {
-            SongId: songId
+            UserId: userId
           }
         })
-        res.send(songId)
+        res.send(userId)
       } catch (err) {
         console.log(err)
       }

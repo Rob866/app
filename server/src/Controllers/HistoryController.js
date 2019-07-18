@@ -1,5 +1,5 @@
 const { History, Song } = require('../models')
-
+const _ = require('lodash')
 module.exports = {
   async index (req, res) {
     const userId = req.user.id
@@ -12,9 +12,12 @@ module.exports = {
           {
             model: Song
           }
+        ],
+        order: [
+          ['createdAt', 'DESC']
         ]
       })
-      res.send(histories)
+      res.send(_.uniqBy(histories, history => history.SongId))
     } catch (err) {
       res.status(500).send({
         error: 'error al tratar de obtener  el historial'
@@ -39,13 +42,13 @@ module.exports = {
   async delete (req, res) {
     if (req.user) {
       try {
-        const songId = req.params.songId
+        const userId = req.params.userId
         await History.destroy({
           where: {
-            SongId: songId
+            UserId: userId
           }
         })
-        res.send(songId)
+        res.send(userId)
       } catch (err) {
         console.log(err)
       }

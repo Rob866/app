@@ -9,29 +9,33 @@
               {{ song.album }}<br>
               {{ song.genero}}<br>
               <v-btn
-              v-if="isUserLogin"
+              v-if="isUserLogin && user.id === song.UserId"
               color="teal lighten-2"
-                @click="toNavigate('edit')" class="white--text">editar
+                @click="toNavigate('edit')" class="white--text">
+                <v-icon>edit</v-icon>
               </v-btn>
               <v-btn
-              v-if="isUserLogin"
+              v-if="isUserLogin && user.id === song.UserId"
               color="red lighten-2"
-              @click="dialogDelete" class="white--text">ELiminar
+              @click="dialogDelete" class="white--text">
+              <v-icon>delete</v-icon>
               </v-btn>
               <v-btn
               v-if="isUserLogin && !bookmark"
               color="teal lighten-2"
-              @click="setAsBookmark" class="white--text">añadir como favorito
+              @click="setAsBookmark" class="white--text">
+              <v-icon>favorite_border</v-icon>
               </v-btn>
               <v-btn
               v-if="isUserLogin && bookmark"
               color="teal lighten-2"
-              @click="removeAsBookmark" class="white--text">quitar como favorito
+              @click="removeAsBookmark" class="white--text">
+              <v-icon>favorite</v-icon>
               </v-btn>
             </v-flex>
             <v-flex xs6>
                 <img :src="song.albumImagenUrl" width=100% alt="" srcset="">
-                Send My Love (To Your New Lover)
+                {{ song.titulo }}
             </v-flex>
           </v-layout>
         </Panel>

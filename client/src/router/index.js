@@ -42,7 +42,7 @@ export default new Router({
       component: Songs
     },
     {
-      path: '/songs/create',
+      path: '/content/create',
       name: 'creatSong',
       component: CreateSong
     },

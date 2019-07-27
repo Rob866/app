@@ -1,37 +1,58 @@
 <template>
   <div>
-    <v-layout>
+     <v-layout>
       <v-flex xs6>
         <Panel title="Detalles">
+          <div v-if="userSong" slot="action" style="position: absolute; bottom:-10px; right:10px; transform: translateY(-50%)">
+            <div style="color: white; font-size: 12px">Creado por: {{ userSong.email | name }}</div>
+          </div>
+          <div slot="section" style="position: absolute; top:50%; right:10px; transform: translateY(-50%)">
+            <div style="position: absolute; top:12%; left:50%; transform: translateX(-50%); color:#00695C">
+              {{ count }}
+            </div>
+            <v-icon style="color: white; font-size: 30px">favorite</v-icon>
+          </div>
           <v-layout>
             <v-flex xs6>
-              {{ song.titulo }}<br>
-              {{ song.album }}<br>
-              {{ song.genero}}<br>
-              <v-btn
-              v-if="isUserLogin && user.id === song.UserId"
-              color="teal lighten-2"
-                @click="toNavigate('edit')" class="white--text">
-                <v-icon>edit</v-icon>
-              </v-btn>
-              <v-btn
-              v-if="isUserLogin && user.id === song.UserId"
-              color="red lighten-2"
-              @click="dialogDelete" class="white--text">
-              <v-icon>delete</v-icon>
-              </v-btn>
-              <v-btn
-              v-if="isUserLogin && !bookmark"
-              color="teal lighten-2"
-              @click="setAsBookmark" class="white--text">
-              <v-icon>favorite_border</v-icon>
-              </v-btn>
-              <v-btn
-              v-if="isUserLogin && bookmark"
-              color="teal lighten-2"
-              @click="removeAsBookmark" class="white--text">
-              <v-icon>favorite</v-icon>
-              </v-btn>
+                <v-layout align-center justify-center column>
+                <v-flex>
+                  <div class="wrapper" style="font-size: 25px">
+                    <div>{{ song.titulo}} </div>
+                    <div>{{ song.album }}</div>
+                    <div>{{ song.genero}}</div>
+                  </div>
+                </v-flex>
+                <v-flex>
+                  <v-btn
+                  v-if="isUserLogin && user.id === song.UserId"
+                  color="teal lighten-2"
+                  @click="toNavigate('edit')" class="white--text">
+                    <v-icon>edit</v-icon>
+                  </v-btn>
+                </v-flex>
+                <v-flex>
+                  <v-btn
+                  v-if="isUserLogin && !bookmark"
+                  color="teal lighten-2"
+                  @click="setAsBookmark" class="white--text">
+                  <v-icon>favorite_border</v-icon>
+                  </v-btn>
+                  <v-btn
+                  v-if="isUserLogin && bookmark"
+                  color="teal lighten-2"
+                  @click="removeAsBookmark" class="white--text">
+                  <v-icon>favorite</v-icon>
+                  </v-btn>
+                </v-flex>
+                    <v-flex>
+                  <v-btn
+                  v-if="isUserLogin && user.id === song.UserId"
+                  color="red lighten-2"
+                  @click="dialogDelete" class="white--text">
+                  <v-icon>delete</v-icon>
+                  </v-btn>
+                </v-flex>
+              </v-layout>
             </v-flex>
             <v-flex xs6>
                 <img :src="song.albumImagenUrl" width=100% alt="" srcset="">
@@ -46,7 +67,7 @@
               <Panel title="Youtube Video">
                 <youtube
                 :video-id="song.youtubeId"
-                :player-height="292">
+                :player-height="254">
                 </youtube>
               </Panel>
             </v-flex>
@@ -56,6 +77,16 @@
     <v-layout>
       <v-flex xs6>
         <Panel title="Tab">
+          <div slot="section">
+            <v-btn
+            flat
+            dark
+            style="position: absolute; top: 0; right: 0"
+            color="white"
+            @click="download('tab')">
+            <v-icon>cloud_download</v-icon>
+          </v-btn>
+          </div>
           <v-textarea
           class="text-area"
           rows="35"
@@ -67,6 +98,16 @@
       <v-flex xs6 class="ml-2">
           <v-layout>
             <Panel title="Letra">
+              <div slot="section">
+              <v-btn
+              style="position: absolute; top: 0; right: 0"
+              color="white"
+              flat
+              dark
+              @click="download('letra')">
+              <v-icon>cloud_download</v-icon>
+              </v-btn>
+             </div>
               <v-textarea
               class="text-area"
               rows="35"
@@ -120,16 +161,23 @@
 </template>
 <script>
 import songsService from '@/services/SongsService'
+import UserService from '@/services/UserService'
 import bookmarksService from '@/services/BookmarksService'
 import Panel from '@/components/Panel'
 import { mapState } from 'vuex'
 import historySongsService from '@/services/historySongsService'
+import pdfMake from 'pdfmake/build/pdfmake'
+import pdfFonts from 'pdfmake/build/vfs_fonts'
+pdfMake.vfs = pdfFonts.pdfMake.vfs
+
 export default {
   data () {
     return {
       dialog: false,
       song: {},
-      bookmark: null
+      bookmark: null,
+      count: null,
+      userSong: null
     }
   },
   computed: {
@@ -154,6 +202,18 @@ export default {
     }
   },
   methods: {
+    download (name) {
+      const pdfName = name
+      let doc = {
+        content: null
+      }
+      if (name === 'tab') {
+        doc.content = this.song.tab
+      } else if (name === 'letra') {
+        doc.content = this.song.letra
+      }
+      pdfMake.createPdf(doc).download(`${pdfName}.pdf`)
+    },
     toNavigate (route) {
       this.$router.push({name: `${route}`, params: {songId: this.song.id}})
     },
@@ -177,7 +237,8 @@ export default {
           songId: this.song.id,
           userId: this.$store.state.user.id
         })).data
-        console.log(this.bookmark)
+        let bookmarks = (await bookmarksService.indexBookmarks(this.song.id)).data
+        this.count = bookmarks.fav
       } catch (err) {
         console.log(err)
       }
@@ -186,16 +247,29 @@ export default {
       try {
         const test = (await bookmarksService.delete(this.bookmark.id)).data
         this.bookmark = null
+        let bookmarks = (await bookmarksService.indexBookmarks(this.song.id)).data
+        this.count = bookmarks.fav
         console.log(test)
       } catch (err) {
         console.log(err)
       }
     }
   },
+  filters: {
+    name (value) {
+      const index = value.split('').indexOf('@')
+      return value.slice(0, index)
+    }
+  },
   async mounted () {
     const songId = this.$store.state.route.params.songId
     try {
       this.song = (await songsService.show(songId)).data
+      let bookmarks = (await bookmarksService.indexBookmarks(songId)).data
+      this.count = bookmarks.fav
+      this.userSong = (await UserService.indexUser({
+        userId: this.song.UserId
+      })).data
       if (this.isUserLogin) {
         await historySongsService.post({
           userId: this.user.id,

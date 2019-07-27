@@ -9,18 +9,20 @@ const SongsUserController = require('./Controllers/SongsUserController')
 module.exports = (app) => {
     app.post('/register', 
     AutentificacionControllerPolicy.register,
-    AutentificacionController.register),
+    AutentificacionController.register)
+    app.get('/user/:userId',
+    AutentificacionController.indexUser)
     app.post('/login',
-    AutentificacionController.login),
+    AutentificacionController.login)
 
-    app.get('/user/songs',
+    app.get('/user/songs/:userId',
     estaAutentificado,
     SongsUserController.index) 
     app.post('/songs',
     estaAutentificado,
     SongsController.post)
     app.get('/songs',
-    SongsController.index),
+    SongsController.index)
     app.get('/songs/:songId',
     SongsController.show)
     app.put('/songs/:songId',
@@ -36,6 +38,10 @@ module.exports = (app) => {
     app.post('/bookmarks',
     estaAutentificado,
     BookmarksController.post)
+    app.get('/bookmarks/allbookmarks/:songId',
+    BookmarksController.indexBookmarks)
+    app.get('/bookmarks/sort/allbookmarks',
+    BookmarksController.indexAll)
     app.delete('/bookmarks/:bookmarkId',
     estaAutentificado,
     BookmarksController.delete)

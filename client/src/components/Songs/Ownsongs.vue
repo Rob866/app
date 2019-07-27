@@ -18,13 +18,14 @@
       :pagination.sync="pagination"
       :items="songs">
       <template slot="items" slot-scope="props">
+        <tr>
         <td class="text-xs-left">
           {{ props.item.titulo }}
         </td>
         <td class="text-xs-left">
           {{ props.item.artista }}
         </td>
-        <td>
+        <td class="text-xs-left">
           <v-btn
           flat
           color="teal lighten-2"
@@ -32,6 +33,7 @@
           <v-icon>visibility</v-icon>
           </v-btn>
         </td>
+        </tr>
       </template>
       </v-data-table>
     </Panel>
@@ -39,6 +41,7 @@
 <script>
 import Panel from '@/components/Panel'
 import UserService from '@/services/UserService'
+import { mapState } from 'vuex'
 export default {
   data () {
     return {
@@ -50,6 +53,10 @@ export default {
         {
           text: 'Artista',
           value: 'artista'
+        },
+        {
+          text: 'Inspeccionar Canción',
+          value: 'ver'
         }
       ],
       pagination: {
@@ -59,13 +66,17 @@ export default {
       songs: []
     }
   },
+  computed: {
+    ...mapState([
+      'user'
+    ])
+  },
   components: {
     Panel
   },
   async mounted () {
     try {
-      this.songs = (await UserService.index({})).data
-      console.log(this.songs)
+      this.songs = (await UserService.index({ userId: this.user.id })).data
     } catch (err) {
       console.log(err)
     }

@@ -2,23 +2,31 @@
   <v-layout justify-center>
     <v-flex xs12 md6>
       <Panel title="Registro">
-        <form @submit.prevent="register">
+        <v-form
+        ref="form"
+        v-model="valid"
+        lazy-validation>
           <v-text-field
-          v-model="email"
-          label="Email">
+          required
+          :rules="emailRules"
+          type="email"
+          label="Email"
+          v-model="user.email">
           </v-text-field>
           <v-text-field
+          required
+          :rules="required"
           type="password"
           label="Password"
-          v-model="password">
+          v-model="user.password">
           </v-text-field>
           <v-alert
-          :value="error"
+          :value="err"
           color="error">
-          {{ error }}
+          {{ err }}
           </v-alert>
-          <v-btn type="submit" color="teal lighten-2" class="white--text">REGISTRARSE</v-btn>
-        </form>
+          <v-btn @click="register" color="teal lighten-2" class="white--text">REGISTRARSE</v-btn>
+        </v-form>
       </Panel>
   </v-flex>
   </v-layout>
@@ -31,24 +39,34 @@ export default {
   name: 'register',
   data () {
     return {
-      email: null,
-      password: null,
-      error: null
+      valid: true,
+      user: {
+        email: null,
+        password: null
+      },
+      required: [(value) => !!value || 'Password es requerido.'],
+      emailRules: [
+        v => !!v || 'El email es requerido',
+        v => /.+@.+/.test(v) || 'El email debe de ser valido'
+      ],
+      err: null
     }
   },
   methods: {
     async register () {
-      this.error = null
-      try {
-        const response = await AutentificacionService.register({
-          email: this.email,
-          password: this.password
-        })
-        this.$store.dispatch('setToken', response.data.token)
-        this.$store.dispatch('setUser', response.data.user)
-        this.$router.push({name: 'songs'})
-      } catch (error) {
-        this.error = error.response.data.error
+      this.err = null
+      if (this.$refs.form.validate()) {
+        try {
+          const response = await AutentificacionService.register({
+            email: this.user.email,
+            password: this.user.password
+          })
+          this.$store.dispatch('setToken', response.data.token)
+          this.$store.dispatch('setUser', response.data.user)
+          this.$router.push({name: 'songs'})
+        } catch (error) {
+          this.err = error.response.data.error
+        }
       }
     }
   },

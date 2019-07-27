@@ -1,8 +1,9 @@
 <template>
-  <v-layout row  justify-center align-center  wrap>
-      <v-flex xs12  class="data-title elevation-2 mt-4">
-        <v-toolbar  color="teal lighten-2" style="height: 55px">
+  <v-layout row  justify-center align-center  wrap style="margin-left:15px">
+       <v-flex xs12  class="data-title elevation-2 mt-4">
+        <v-toolbar  color="teal lighten-2" style="height: 55px; position: relative">
         <v-toolbar-title class="white--text" style="padding-bottom: 10px">{{ title }}</v-toolbar-title>
+        <slot name="section"></slot>
         <slot name="action"></slot>
         </v-toolbar>
     </v-flex>
@@ -14,7 +15,13 @@
   </v-layout>
 </template>
 <script>
+import { mapState } from 'vuex'
 export default {
+  computed: {
+    ...mapState([
+      'loading'
+    ])
+  },
   props: ['title']
 }
 </script>

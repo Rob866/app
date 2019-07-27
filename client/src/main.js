@@ -8,12 +8,25 @@ import 'vuetify/dist/vuetify.min.css'
 import { sync } from 'vuex-router-sync'
 import store from '@/store/store'
 import VueYouTubeEmbed from 'vue-youtube-embed'
+import VueCarousel from 'vue-carousel'
 
 Vue.config.productionTip = false
-
 sync(store, router)
 Vue.use(Vuetify)
 Vue.use(VueYouTubeEmbed)
+Vue.use(VueCarousel)
+
+router.beforeEach((to, from, next) => {
+  if (to.meta.auth) {
+    if (store.state.isUserLogin) {
+      next()
+    } else {
+      next({name: 'songs'})
+      return
+    }
+  }
+  next()
+})
 
 /* eslint-disable no-new */
 new Vue({

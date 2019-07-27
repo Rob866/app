@@ -5,7 +5,7 @@ module.exports = {
     const { email, password } = req.body
     if (!email || !password) {
       res.status(400).send({
-        error: 'Información incorrecta'
+        error: 'Campos incompletos'
       })
     }
     const esquema = {

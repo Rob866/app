@@ -2,6 +2,7 @@ const { User } = require('../models')
 
 module.exports = {
   async index (req, res) {
+    console.log(req.params.userId)
     try {
       const user = await User.findOne({
         where: {
@@ -12,7 +13,7 @@ module.exports = {
       res.send(songs)
     } catch (err) {
       res.status(500).send({
-        error: 'acceso a cancion fallida'
+        error: 'acceso a canciones creadas fallida'
       })
     }
   }

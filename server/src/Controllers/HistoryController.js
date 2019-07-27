@@ -3,6 +3,7 @@ const _ = require('lodash')
 module.exports = {
   async index (req, res) {
     const userId = req.user.id
+    let historySongs = []
     try {
       const histories = await History.findAll({
         where: {
@@ -17,7 +18,11 @@ module.exports = {
           ['createdAt', 'DESC']
         ]
       })
-      res.send(_.uniqBy(histories, history => history.SongId))
+      const DescHistories = _.uniqBy(histories, history => history.SongId)
+      DescHistories.forEach((history) => {
+        historySongs.push(history.Song)
+      })
+      res.send(historySongs)
     } catch (err) {
       res.status(500).send({
         error: 'error al tratar de obtener  el historial'

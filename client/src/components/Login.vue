@@ -2,23 +2,31 @@
   <v-layout justify-center >
     <v-flex xs12 sm6>
       <Panel title="Login">
-        <form   @submit.prevent="login">
+        <v-form
+         ref="form"
+         v-model="valid"
+         lazy-validation>
           <v-text-field
-          v-model="email"
+          required
+          :rules="emailRules"
+          v-model="user.email"
+          type="email"
           label="Email">
           </v-text-field>
           <v-text-field
+          required
+          :rules="required"
           type="password"
           label="Password"
-          v-model="password">
+          v-model="user.password">
           </v-text-field>
             <v-alert
-            :value="error"
+            :value="err"
             color="error">
-            {{ error }}
+            {{ err }}
             </v-alert>
-          <v-btn  type="submit" color="teal lighten-2" class="white--text" >LOGARSE</v-btn>
-        </form>
+          <v-btn  @click="login" color="teal lighten-2" class="white--text" >LOGARSE</v-btn>
+        </v-form>
     </Panel>
     </v-flex>
   </v-layout>
@@ -31,25 +39,31 @@ export default {
   name: 'login',
   data () {
     return {
-      email: null,
-      password: null,
-      error: null
-
+      valid: true,
+      user: { email: null, password: null },
+      required: [(value) => !!value || 'Campo requerido'],
+      emailRules: [
+        v => !!v || 'El email es requerido',
+        v => /.+@.+/.test(v) || 'El email debe de ser valido'
+      ],
+      err: null
     }
   },
   methods: {
     async login () {
-      this.error = null
-      try {
-        const response = await AutentificacionService.login({
-          email: this.email,
-          password: this.password
-        })
-        this.$store.dispatch('setToken', response.data.token)
-        this.$store.dispatch('setUser', response.data.user)
-        this.$router.push({name: 'songs'})
-      } catch (error) {
-        this.error = error.response.data.error
+      this.err = null
+      if (this.$refs.form.validate()) {
+        try {
+          const response = await AutentificacionService.login({
+            email: this.user.email,
+            password: this.user.password
+          })
+          this.$store.dispatch('setToken', response.data.token)
+          this.$store.dispatch('setUser', response.data.user)
+          this.$router.push({name: 'songs'})
+        } catch (error) {
+          this.err = error.response.data.error
+        }
       }
     }
   },

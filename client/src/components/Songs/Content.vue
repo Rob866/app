@@ -11,8 +11,8 @@
 import BookmarksSongs from '@/components/Songs/BookmarksSongs'
 import RecentlyViwedSongs from '@/components/Songs/RecentlyViewedSongs'
 import Ownsongs from '@/components/Songs/Ownsongs'
-export default {
 
+export default {
   components: {
     BookmarksSongs,
     RecentlyViwedSongs,

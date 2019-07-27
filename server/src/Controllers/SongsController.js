@@ -57,7 +57,7 @@ module.exports = {
   async post (req, res) {
     try {
       const song = await Song.create(req.body)
-      song.setUser(req.user.id)
+      await song.setUser(req.user.id)
       res.send(song)
     } catch (err) {
       res.status(500).send({

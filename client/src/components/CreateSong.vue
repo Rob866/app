@@ -1,40 +1,44 @@
 <template>
+  <v-form
+  ref="form"
+  v-model="valid"
+  lazy-validation>
   <v-layout wrap>
     <v-flex xs12 sm4>
       <Panel title="Crear Canción">
       <v-text-field
       required
-      :rules=[required]
+      :rules="required"
       v-model="song.titulo"
       label="Titulo">
       </v-text-field>
       <v-text-field
       required
-      :rules=[required]
+      :rules="required"
       label="Artista"
       v-model="song.artista">
       </v-text-field>
       <v-text-field
       required
-      :rules=[required]
+      :rules="required"
       label="Genero"
       v-model="song.genero">
       </v-text-field>
       <v-text-field
       required
-      :rules=[required]
+      :rules="required"
       label="Album"
       v-model="song.album">
       </v-text-field>
       <v-text-field
       required
-      :rules=[required]
+      :rules="required"
       label="Url imagen"
       v-model="song.albumImagenUrl">
       </v-text-field>
       <v-text-field
       required
-      :rules=[required]
+      :rules="required"
       label="Youtube ID"
       v-model="song.youtubeId">
       </v-text-field>
@@ -45,14 +49,14 @@
         <v-textarea
         required
         rows="6"
-        :rules=[required]
+        :rules="required"
         label="Letra"
         v-model="song.letra">
         </v-textarea>
         <v-textarea
         required
         rows="7"
-        :rules=[required]
+        :rules="required"
         label="Tab"
         v-model="song.tab">
         </v-textarea>
@@ -65,6 +69,7 @@
         </v-alert>
   </v-flex>
   </v-layout>
+  </v-form>
 </template>
 
 <script>
@@ -74,6 +79,7 @@ export default {
   name: 'createSong',
   data () {
     return {
+      valid: true,
       song: {
         titulo: null,
         artista: null,
@@ -84,23 +90,21 @@ export default {
         letra: null,
         tab: null
       },
-      required: (value) => !!value || 'requerido.',
+      required: [(value) => !!value || 'Campo requerido.'],
       err: null
     }
   },
   methods: {
     async create () {
       this.err = null
-      const allFilled = Object.keys(this.song).every((key) => !!this.song[key])
-      if (!allFilled) {
-        this.err = 'Por favor llena todos campos..'
-        return
-      }
-      try {
-        await SongsService.post(this.song)
-        this.$router.push({name: 'songs'})
-      } catch (err) {
-        console.log(err)
+      // const allFilled = Object.keys(this.song).every((key) => !!this.song[key])
+      if (this.$refs.form.validate()) {
+        try {
+          await SongsService.post(this.song)
+          this.$router.push({name: 'songs'})
+        } catch (error) {
+          this.err = error.response.data.error
+        }
       }
     }
   },

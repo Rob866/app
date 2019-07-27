@@ -9,7 +9,9 @@ export default new Vuex.Store({
   state: {
     token: null,
     user: null,
-    isUserLogin: false
+    isUserLogin: false,
+    drawer: null,
+    image: 'https://blog.modernsetups.com/wp-content/uploads/2019/02/yellow-blue-green-gradient-473x1024.jpg?x97945'
   },
   mutations: {
     setToken (state, token) {
@@ -22,6 +24,9 @@ export default new Vuex.Store({
     },
     setUser (state, user) {
       state.user = user
+    },
+    setDrawer (state, drawer) {
+      state.drawer = drawer
     }
   },
   actions: {
@@ -30,6 +35,9 @@ export default new Vuex.Store({
     },
     setUser ({commit}, user) {
       commit('setUser', user)
+    },
+    setDrawer ({commit}, drawer) {
+      commit('setDrawer', drawer)
     }
   }
 })

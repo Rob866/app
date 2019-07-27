@@ -1,4 +1,23 @@
 const { Bookmark, Song } = require('../models')
+
+async function processArray (songs) {
+  let dataSongs = []
+  let dataSortSongs = []
+  for (let index in songs) {
+    try {
+      let bookmarks = await Bookmark.findAll({
+        where: {
+          SongId: songs[index].id
+        }
+      })
+      dataSongs.push({ song: songs[index], count: bookmarks.length })
+    } catch (error) {
+      console.log('error')
+    }
+  }
+  dataSortSongs = dataSongs.sort((a, b) => { return (b.count - a.count) })
+  return dataSortSongs
+}
 module.exports = {
   async index (req, res) {
     // req user autentificacion se obtiene del middleware esta Autentificado
@@ -19,6 +38,7 @@ module.exports = {
         })
       }
     } else {
+      let bookmarkSongs = []
       try {
         const bookmarks = await Bookmark.findAll({
           where: {
@@ -33,12 +53,42 @@ module.exports = {
             ['createdAt', 'DESC']
           ]
         })
-        res.send(bookmarks)
+        bookmarks.forEach(bookmark => {
+          bookmarkSongs.push(bookmark.Song)
+        })
+        res.send(bookmarkSongs)
       } catch (err) {
         res.status(500).send({
           error: 'error al tratar de obtener el bookmark'
         })
       }
+    }
+  },
+  // get numbers of  bookmarks(favorites) for to specific song
+  async indexBookmarks (req, res) {
+    try {
+      let bookmarks = await Bookmark.findAll({
+        where: {
+          SongId: req.params.songId
+        }
+      })
+      res.send({ fav: bookmarks.length })
+    } catch (err) {
+      res.status(500).send({
+        error: 'error al acceder a los bookmarks de una cancion'
+      })
+    }
+  },
+  // get array contain all songs and the numbers of favorite of each song
+  async indexAll (req, res) {
+    try {
+      let songs = await Song.findAll()
+      let dataSortSongs = await processArray(songs)
+      res.send(dataSortSongs)
+    } catch (error) {
+      res.status(500).send({
+        error: 'error'
+      })
     }
   },
   async post (req, res) {

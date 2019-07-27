@@ -15,20 +15,22 @@
       :pagination.sync="pagination"
       :items="bookmarks">
       <template slot="items" slot-scope="props">
+        <tr>
         <td class="text-xs-left">
-          {{ props.item.Song.titulo }}
+          {{ props.item.titulo }}
         </td>
         <td class="text-xs-left">
-          {{ props.item.Song.artista }}
+          {{ props.item.artista }}
         </td>
-        <td>
+        <td class="text-xs-left">
           <v-btn
           flat
           color="teal lighten-2"
-          @click="navigateTo({name: 'song', params: { songId: props.item.Song.id}})">
+          @click="navigateTo({name: 'song', params: { songId: props.item.id}})">
           <v-icon>visibility</v-icon>
           </v-btn>
         </td>
+        </tr>
       </template>
     </v-data-table>
   </Panel>
@@ -49,6 +51,10 @@ export default {
         {
           text: 'Artista',
           value: 'artista'
+        },
+        {
+          text: 'Inspeccionar Canción',
+          value: 'ver'
         }
       ],
       pagination: {

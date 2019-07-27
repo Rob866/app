@@ -25,6 +25,20 @@ module.exports = {
       })
     }
   },
+  async indexUser (req, res) {
+    try {
+      const user = await User.findOne({
+        where: {
+          id: req.params.userId
+        }
+      })
+      res.send(user)
+    } catch (error) {
+      res.status(500).send({
+        error: 'Usuario no encontrado'
+      })
+    }
+  },
   async login (req, res) {
     try {
       const { email, password } = req.body

@@ -30,7 +30,8 @@ export default {
   },
   async mounted () {
     try {
-      this.songs = (await bookmarksService.indexAll()).data
+      let allSongs = (await bookmarksService.indexAll()).data
+      this.songs = allSongs.slice(0, 11)
     } catch (err) {
       console.log(err.error)
     }

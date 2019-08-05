@@ -80,7 +80,7 @@ module.exports = {
           })
         }
         await song.destroy()
-        res.send(song)
+        res.send(songId)
       } catch (err) {
         res.status(500).send({
           error: 'no  tiene permisos'

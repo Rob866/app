@@ -35,9 +35,7 @@ export default {
     },
     enter (element) {
       const { height } = getComputedStyle(element)
-
       element.style.height = this.prevHeight
-
       setTimeout(() => {
         element.style.height = height
       })
@@ -67,7 +65,7 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin-top: 0;
-  margin-left: 120px;
+  margin-left: 120px
 }
 
 .fade-enter-active,

@@ -148,14 +148,15 @@ export default {
       this.$router.push({
         name: 'login'
       })
-    },
+    }
+    /*
     onResponsiveInverted () {
       if (window.innerWidth < 991) {
         this.responsive = true
       } else {
         this.responsive = false
       }
-    }
+    } */
   },
   computed: {
     ...mapState(['drawer', 'isUserLogin', 'user', 'image']),
@@ -169,6 +170,7 @@ export default {
         return this.drawer
       },
       set (val) {
+        console.log(val)
         this.$store.dispatch('setDrawer', val)
       }
     }

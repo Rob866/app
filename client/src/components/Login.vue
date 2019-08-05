@@ -1,6 +1,6 @@
 <template>
   <v-layout justify-center >
-    <v-flex xs12 sm6>
+    <v-flex xs12 md6>
       <Panel title="Login">
         <v-form
          ref="form"

@@ -19,9 +19,42 @@ module.exports = {
         user: userJson,
         token: jwtSignUser(userJson)
       })
-    } catch (err) {
+    } catch (error) {
       res.status(400).send({
         error: 'este email ya esta en uso.'
+      })
+    }
+  },
+  async update (req, res) {
+    const { email, oldpassword, password } = req.body
+    const userId = req.user.id
+    const user = await User.findOne({
+      where: {
+        id: userId
+      }
+    })
+    console.log(user.password)
+    if (!user) {
+      res.status(500).send({
+        error: 'Usario no encontrado'
+      })
+    }
+    try {
+      const isPassValid = await user.comparePassword(oldpassword)
+      if (!isPassValid) {
+        res.status(400).send({
+          error: 'Tu antiguo password no coincide'
+        })
+      }
+      const updateUser = await user.update({ email: email, password: password })
+      const userJson = updateUser.toJSON()
+      res.send({
+        user: userJson,
+        token: jwtSignUser(userJson)
+      })
+    } catch (error) {
+      res.status(500).send({
+        error: 'Error al escribir las credenciales'
       })
     }
   },

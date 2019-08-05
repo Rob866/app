@@ -1,21 +1,12 @@
 <template>
   <v-toolbar  fixed color="teal lighten-2" style="height: 55px">
-    <v-toolbar-title class="white--text">
-        <v-btn
-          flat
-          dark
-          class="white--text"
-          style="fontsize: 22px"
-          @click="navigateTo('songs')">
-            <img src="../assets/song.png"  width="180px" alt="" srcset="">
-        </v-btn>
-      </v-toolbar-title>
   <v-toolbar-title>
     <v-btn
       flat
       dark
-      class="white--text"
-      style="fontsize: 22px"
+      id="item"
+      class="white--text boton"
+      style="font-size: 18px;margin-left: 260px"
       @click="navigateTo('songs')">
       Canciones
     </v-btn>
@@ -26,8 +17,8 @@
       v-if="isUserLogin"
       flat
       dark
-      class="white--text"
-      style="fontsize: 22px; text-decoration: none"
+      class="white--text boton"
+      style="font-size: 18px; text-decoration: none"
       @click="navigateTo('data')"
       >
       <v-icon>person_outline</v-icon><span>{{ $store.state.user.email | name }}</span>
@@ -36,16 +27,16 @@
       v-if="isUserLogin"
       flat
       dark
-      class="white--text"
-      style="fontsize: 22px; text-decoration: none"
+      class="white--text boton"
+      style="font-size: 18px; text-decoration: none"
       @click="navigateTo('content')">
       <v-icon>dashboard</v-icon>
     </v-btn>
     <v-btn
       v-if="!isUserLogin"
       flat dark
-      class="white--text"
-      style="fontsize: 22px"
+      class="white--text boton"
+      style="font-size: 18px"
       @click="navigateTo('login')">
       login
     </v-btn>
@@ -53,8 +44,8 @@
       flat
       dark
       v-if="!isUserLogin"
-      class="white--text"
-      style="fontsize: 22px; text-decoration: none"
+      class="white--text boton"
+      style="font-size: 18px; text-decoration: none"
       @click="navigateTo('register')">
       Registro
       </v-btn>
@@ -67,9 +58,9 @@
           color="white"
           dark
           flat
-          class="white--text"
+          class="white--text boton"
           v-on="on">
-          <v-icon style="font-size: 30px">settings</v-icon>
+          <v-icon style="font-size: 28px">settings</v-icon>
         </v-btn>
       </template>
       <v-list>
@@ -114,5 +105,18 @@ export default {
 </script>
 
 <style scoped>
+
+@media screen and (max-width: 600px){
+img {
+  width: 80px;
+}
+.boton {
+  font-size: 12px !important;
+}
+#item {
+  margin-left: 0 !important;  
+}
+
+}
 
 </style>

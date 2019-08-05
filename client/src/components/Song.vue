@@ -1,7 +1,7 @@
 <template>
   <div>
-     <v-layout>
-      <v-flex xs6>
+     <v-layout wrap>
+      <v-flex xs12 md6>
         <Panel title="Detalles">
           <div v-if="userSong" slot="action" style="position: absolute; bottom:-10px; right:10px; transform: translateY(-50%)">
             <div style="color: white; font-size: 12px">Creado por: {{ userSong.email | name }}</div>
@@ -61,7 +61,7 @@
           </v-layout>
         </Panel>
       </v-flex>
-      <v-flex xs6 class="ml-2">
+      <v-flex xs12 md6>
           <v-layout>
             <v-flex xs12>
               <Panel title="Youtube Video">
@@ -74,8 +74,8 @@
           </v-layout>
       </v-flex>
     </v-layout>
-    <v-layout>
-      <v-flex xs6>
+    <v-layout wrap>
+      <v-flex xs12 md6>
         <Panel title="Tab">
           <div slot="section">
             <v-btn
@@ -95,7 +95,7 @@
           </v-textarea>
       </Panel>
       </v-flex>
-      <v-flex xs6 class="ml-2">
+      <v-flex xs12 md6>
           <v-layout>
             <Panel title="Letra">
               <div slot="section">
@@ -196,8 +196,8 @@ export default {
           songId: this.song.id,
           userId: this.$store.state.user.id
         })).data
-      } catch (err) {
-        console.log(err)
+      } catch (error) {
+        console.log(error.response.data.error)
       }
     }
   },
@@ -245,13 +245,13 @@ export default {
     },
     async removeAsBookmark () {
       try {
-        const test = (await bookmarksService.delete(this.bookmark.id)).data
+        const songIdBorrado = (await bookmarksService.delete(this.bookmark.id)).data
+        console.log(songIdBorrado)
         this.bookmark = null
         let bookmarks = (await bookmarksService.indexBookmarks(this.song.id)).data
         this.count = bookmarks.fav
-        console.log(test)
-      } catch (err) {
-        console.log(err)
+      } catch (error) {
+        console.log(error.response.data.error)
       }
     }
   },
@@ -276,8 +276,8 @@ export default {
           songId: songId
         })
       }
-    } catch (err) {
-      console.log(err)
+    } catch (error) {
+      console.log(error.response.data.error)
     }
   },
   components: {

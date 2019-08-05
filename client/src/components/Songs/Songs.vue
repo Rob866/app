@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Panel title="Tablaturas mas populares">
+    <Panel title="Ranking">
        <Carousel></Carousel>
     </Panel>
     <v-layout>

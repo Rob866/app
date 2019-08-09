@@ -19,6 +19,7 @@
     "lodash": "^4.17.15",
     "pdfmake": "^0.1.57",
     "vue": "^2.5.2",
+    "vue-carousel": "^0.18.0",
     "vue-router": "^3.0.1",
     "vue-youtube-embed": "^2.2.1",
     "vuetify": "^1.5.16",

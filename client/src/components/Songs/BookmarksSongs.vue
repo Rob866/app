@@ -1,15 +1,15 @@
 <template>
   <div style="position: relative">
   <Panel title="Favoritos">
+    <div slot="section">
     <v-btn
       v-if="isUserLogin"
       color="red lighten-2"
-      medium
-      absolute
-      right
+      style="position: absolute; top: 0; right: 0"
       @click="deleteBookmarks" class="white--text">
-      BORRAR FAVORITOS
+      ELIMINAR FAVORITOS
     </v-btn>
+    </div>
     <v-data-table
       :headers ="headers"
       :pagination.sync="pagination"

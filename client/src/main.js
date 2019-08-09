@@ -9,12 +9,14 @@ import { sync } from 'vuex-router-sync'
 import store from '@/store/store'
 import VueYouTubeEmbed from 'vue-youtube-embed'
 import VueCarousel from 'vue-carousel'
+import { VueSpinners } from '@saeris/vue-spinners'
 
 Vue.config.productionTip = false
 sync(store, router)
 Vue.use(Vuetify)
 Vue.use(VueYouTubeEmbed)
 Vue.use(VueCarousel)
+Vue.use(VueSpinners)
 
 router.beforeEach((to, from, next) => {
   if (to.meta.auth) {

@@ -1,12 +1,12 @@
 <template>
   <v-toolbar  fixed color="teal lighten-2" style="height: 55px">
-  <v-toolbar-title>
+  <v-toolbar-title class="show">
     <v-btn
       flat
       dark
       id="item"
       class="white--text boton"
-      style="font-size: 18px;margin-left: 260px"
+      style="font-size: 16px"
       @click="navigateTo('songs')">
       Canciones
     </v-btn>
@@ -14,11 +14,22 @@
   <v-spacer></v-spacer>
   <v-toolbar-items>
      <v-btn
+      flat
+      dark
+      id="item"
+      class="white--text boton menu"
+      style="font-size: 16px"
+      @click="toggle">
+      MENU
+    </v-btn>
+  </v-toolbar-items>
+  <v-toolbar-items class="show">
+     <v-btn
       v-if="isUserLogin"
       flat
       dark
       class="white--text boton"
-      style="font-size: 18px; text-decoration: none"
+      style="font-size: 16px; text-decoration: none"
       @click="navigateTo('data')"
       >
       <v-icon>person_outline</v-icon><span>{{ $store.state.user.email | name }}</span>
@@ -28,7 +39,7 @@
       flat
       dark
       class="white--text boton"
-      style="font-size: 18px; text-decoration: none"
+      style="font-size: 16px; text-decoration: none"
       @click="navigateTo('content')">
       <v-icon>dashboard</v-icon>
     </v-btn>
@@ -36,7 +47,7 @@
       v-if="!isUserLogin"
       flat dark
       class="white--text boton"
-      style="font-size: 18px"
+      style="font-size: 16px"
       @click="navigateTo('login')">
       login
     </v-btn>
@@ -45,7 +56,7 @@
       dark
       v-if="!isUserLogin"
       class="white--text boton"
-      style="font-size: 18px; text-decoration: none"
+      style="font-size: 16px; text-decoration: none"
       @click="navigateTo('register')">
       Registro
       </v-btn>
@@ -63,11 +74,11 @@
           <v-icon style="font-size: 28px">settings</v-icon>
         </v-btn>
       </template>
-      <v-list>
-        <v-list-tile>
-        <v-list-tile-title @click="logOut" style="cursor: pointer">Salir</v-list-tile-title>
-        </v-list-tile>
-      </v-list>
+        <v-list style="cursor: pointer">
+          <div @click='logOut'>
+          <v-icon>person_outline</v-icon><span style="font-size:16px;margin-left: 5px">Salir</span>
+          </div>
+        </v-list>
     </v-menu>
   </div>
   </v-toolbar-items>
@@ -80,10 +91,15 @@ import {mapState} from 'vuex'
 export default {
   computed: {
     ...mapState([
-      'isUserLogin'
+      'isUserLogin',
+      'drawer'
     ])
   },
   methods: {
+    toggle () {
+      const val = !this.drawer
+      this.$store.dispatch('setDrawer', val)
+    },
     navigateTo (route) {
       this.$router.push({name: `${route}`})
     },
@@ -105,8 +121,13 @@ export default {
 </script>
 
 <style scoped>
-
-@media screen and (max-width: 600px){
+#item{
+  margin-inline-start: 260px;
+}
+.menu{
+  display: none;
+}
+@media screen and (max-width: 991px){
 img {
   width: 80px;
 }
@@ -114,7 +135,16 @@ img {
   font-size: 12px !important;
 }
 #item {
-  margin-left: 0 !important;  
+  margin-left: 0 !important;
+}
+
+@media screen and (max-width: 520px){
+.show {
+  display: none
+  }
+.menu {
+  display: block;
+}
 }
 
 }

@@ -21,7 +21,7 @@ export default {
 .progress{
   height: 40px;
   position: absolute;
-  top: 50%;
+  top: 20%;
   left: 55%;
   z-index: 2;
   transform: translate(-50%,-50%);

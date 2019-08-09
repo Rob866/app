@@ -11,7 +11,8 @@ export default new Vuex.Store({
     user: null,
     isUserLogin: false,
     drawer: null,
-    image: 'https://blog.modernsetups.com/wp-content/uploads/2019/02/yellow-blue-green-gradient-473x1024.jpg?x97945'
+    image: 'https://blog.modernsetups.com/wp-content/uploads/2019/02/yellow-blue-green-gradient-473x1024.jpg?x97945',
+    isLoading: false
   },
   mutations: {
     setToken (state, token) {
@@ -27,6 +28,9 @@ export default new Vuex.Store({
     },
     setDrawer (state, drawer) {
       state.drawer = drawer
+    },
+    setLoading (state, loading) {
+      state.isLoading = loading
     }
   },
   actions: {
@@ -38,6 +42,9 @@ export default new Vuex.Store({
     },
     setDrawer ({commit}, drawer) {
       commit('setDrawer', drawer)
+    },
+    setLoading ({commit}, loading) {
+      commit('setLoading', loading)
     }
   }
 })

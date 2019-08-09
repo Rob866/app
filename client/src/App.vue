@@ -13,6 +13,8 @@
         <router-view/>
       </transition>
       </v-container>
+      <GridLoader class="custom-class change" color="teal" :loading="isLoading" :size="30">
+      </GridLoader>
     </v-app>
   </div>
 </template>
@@ -20,8 +22,9 @@
 <script>
 import HeaderPage from '@/components/Header'
 import Drawer from '@/components/Drawer'
-import Loading from '@/components/Loading'
 import { mapState } from 'vuex'
+import { GridLoader } from '@saeris/vue-spinners'
+
 export default {
   name: 'App',
   data () {
@@ -46,13 +49,13 @@ export default {
   },
   computed: {
     ...mapState([
-      'loading'
+      'isLoading'
     ])
   },
   components: {
     HeaderPage,
     Drawer,
-    Loading
+    GridLoader
   }
 }
 </script>
@@ -81,9 +84,18 @@ export default {
   opacity: 0
 }
 
+.change {
+  position: fixed;
+  top: 50%;
+  left: 55%;
+  transform: translate(-50%,-50%);
+}
 @media screen and (max-width: 990px){
   #app {
     margin-left: 0;
+  }
+  .change{
+    left: 50%;
   }
 }
 

@@ -16,10 +16,10 @@
             <v-flex xs6>
                 <v-layout align-center justify-center column>
                 <v-flex>
-                  <div class="wrapper" style="font-size: 25px">
-                    <div>{{ song.titulo}} </div>
-                    <div>{{ song.album }}</div>
-                    <div>{{ song.genero}}</div>
+                  <div class="wrapper">
+                    <div class="infoData">{{ song.titulo}} </div>
+                    <div class="infoData">{{ song.album }}</div>
+                    <div class="infoData">{{ song.genero}}</div>
                   </div>
                 </v-flex>
                 <v-flex>
@@ -55,7 +55,7 @@
               </v-layout>
             </v-flex>
             <v-flex xs6>
-                <img :src="song.albumImagenUrl" width=100% alt="" srcset="">
+                <img :src="song.albumImagenUrl" width=100%  height=90% alt="" srcset="">
                 {{ song.titulo }}
             </v-flex>
           </v-layout>
@@ -125,7 +125,7 @@
     >
       <v-card>
         <v-card-title
-          class="headline grey lighten-2"
+          class="headline teal lighten-2 white--text"
           primary-title
         >
           Advertencia
@@ -288,6 +288,14 @@ export default {
 <style scoped>
 .text-area{
   font-family: monospace;
-  font-size: 14px
+  font-size: 14px;
+}
+.infoData{
+  font-size: 25px;
+  }
+@media screen  and (max-width: 520px){
+  .infoData {
+    font-size: 18px;
+  }
 }
 </style>

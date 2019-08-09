@@ -77,8 +77,7 @@ export default {
   },
   computed: {
     ...mapState([
-      'isUserLogin',
-      'loading'
+      'isUserLogin'
     ])
   },
   watch: {

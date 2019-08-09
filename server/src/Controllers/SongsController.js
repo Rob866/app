@@ -20,7 +20,7 @@ module.exports = {
         })
       } else {
         songs = await Song.findAll({
-          limit: 10
+          limit: 20
         })
       }
       res.send(songs)

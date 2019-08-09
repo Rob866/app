@@ -1,5 +1,5 @@
 <template>
-  <Panel title="Canciones creadas">
+  <Panel title="Canciones creadas" v-if="songs">
       <div slot="action">
         <v-btn
         @click="$router.push({name: 'creatSong'})"

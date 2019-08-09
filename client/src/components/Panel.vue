@@ -1,5 +1,5 @@
 <template>
-  <v-layout row  justify-center align-center  wrap style="margin-left:15px">
+  <v-layout row  justify-center align-center  wrap id="space">
        <v-flex xs12  class="data-title elevation-2 mt-4">
         <v-toolbar  color="teal lighten-2" style="height: 55px; position: relative">
         <v-toolbar-title class="white--text" style="padding-bottom: 10px">{{ title }}</v-toolbar-title>
@@ -26,7 +26,15 @@ export default {
 }
 </script>
 <style scoped>
+#space{
+  margin-left: 15px !important;
+}
   .data-info,.data-title{
   width: 100%;
+}
+@media screen and (max-width:992px){
+  #space{
+    margin-left: 0 !important;
+  }
 }
 </style>

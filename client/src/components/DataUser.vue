@@ -150,7 +150,6 @@ export default {
       this.userData.email = this.user.email
     },
     async sendData () {
-      console.log(('Cambiar'))
       this.err = null
       if (this.$refs.form.validate()) {
         try {
@@ -159,10 +158,6 @@ export default {
             user: {
               email: this.userData.email, oldpassword: this.userData.oldpass, password: this.userData.password
             }})
-          if (!response) {
-            console.log('error en la respuesta')
-            this.dialog = false
-          }
           this.$store.dispatch('setToken', response.data.token)
           this.$store.dispatch('setUser', response.data.user)
           this.dialog = false

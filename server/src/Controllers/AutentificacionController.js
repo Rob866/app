@@ -28,21 +28,20 @@ module.exports = {
   async update (req, res) {
     const { email, oldpassword, password } = req.body
     const userId = req.user.id
-    const user = await User.findOne({
-      where: {
-        id: userId
-      }
-    })
-    console.log(user.password)
-    if (!user) {
-      res.status(500).send({
-        error: 'Usario no encontrado'
-      })
-    }
     try {
+      const user = await User.findOne({
+        where: {
+          id: userId
+        }
+      })
+      if (!user) {
+        return res.status(500).send({
+          error: 'Usario no encontrado'
+        })
+      }
       const isPassValid = await user.comparePassword(oldpassword)
       if (!isPassValid) {
-        res.status(400).send({
+        return res.status(400).send({
           error: 'Tu antiguo password no coincide'
         })
       }
@@ -82,7 +81,7 @@ module.exports = {
       })
       if (!user) {
         return res.status(403).send({
-          error: 'la informacion es incorrecta'
+          error: 'Este correo no existe'
         })
       }
       const isPassValid = await user.comparePassword(password)
